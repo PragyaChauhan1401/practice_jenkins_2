@@ -22,8 +22,4 @@ pipeline{
         }
       }
   }
-  post{
-    always{
-        echo "pipeline built successfully."
-    }
-  }
+  
