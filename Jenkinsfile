@@ -5,17 +5,18 @@ pipeline{
   }
   stages{
     stage("cloning the repo"){
-        step{
+        steps{
             git branch: 'main', url:'https://github.com/PragyaChauhan1401/practice_jenkins_2.git'
         }
     }
       stage("building docker image"){
-          step{
+          steps{
               bat "docker build -t  $IMAGE_NAME ."
               echo "pulled ubuntu image"
           }
+      }
         stage("running docker container"){
-            step{
+            steps{
                 bat "docker run -d -p 80:80 --name $IMAGE_NAME $IMAGE_NAME"
             }
         }
