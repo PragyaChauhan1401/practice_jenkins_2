@@ -17,7 +17,11 @@ pipeline{
       }
         stage("running docker container"){
             steps{
-                bat "docker run -d -p 80:80 --name $IMAGE_NAME $IMAGE_NAME"
+                bat """
+                docker stop $IMAGE_NAME || true
+                docker rm $IMAGE_NAME || true
+                docker run -d -p 80:80 --name $IMAGE_NAME $IMAGE_NAME
+                """
             }
         }
       }
